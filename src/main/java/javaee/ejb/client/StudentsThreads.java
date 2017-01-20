@@ -6,7 +6,13 @@ import javax.naming.NamingException;
 
 import javaee.ejb.CompteBancaireRemote;
 
-public class MyThread extends Thread {
+public class StudentsThreads extends Thread {
+	
+	private String studentName;
+	
+	public StudentsThreads(String studentName) {
+		this.studentName = studentName;
+	}
 	
 	@Override
 	public void run() {
@@ -15,14 +21,15 @@ public class MyThread extends Thread {
 			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
 			Context context = new InitialContext();
 			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
-			System.out.println(proxy.versement("WalidYAICH", 100));
-			System.out.println(proxy.versement("Mariem", 20));
-			System.out.println(proxy.versement("Tasnim", 20));
-			System.out.println(proxy.versement("Mohamed", 20));
+			System.out.println(proxy.versement(studentName, 100));
+			System.out.println(proxy.versement(studentName, 50));
+			System.out.println(proxy.versement(studentName, 20));
+			System.out.println(proxy.retrait(studentName, 170));
+
+
 
 			
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
