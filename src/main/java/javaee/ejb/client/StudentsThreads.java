@@ -18,16 +18,15 @@ public class StudentsThreads extends Thread {
 	public void run() {
 		
 		try {
+			//Deux executions signifie 2 clients differents !
 			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
 			Context context = new InitialContext();
 			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
-			System.out.println(proxy.versement(studentName, 100));
-			System.out.println(proxy.versement(studentName, 50));
-			System.out.println(proxy.versement(studentName, 20));
-			System.out.println(proxy.retrait(studentName, 170));
-
-
-
+			System.out.println("appel 1 : " + proxy.versement(studentName, 20)); //Le client demande un versement
+			System.out.println("appel 2 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
+			System.out.println("appel 3 : " +proxy.versement(studentName, 10));  //Le client demande un versement
+			System.out.println("appel 4 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
+			//Solde finale = 10
 			
 		} catch (NamingException e) {
 			e.printStackTrace();

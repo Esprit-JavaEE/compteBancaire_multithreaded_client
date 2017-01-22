@@ -4,10 +4,11 @@ import javax.naming.NamingException;
 
 public class CallRemoteEJB {
 
-	public static void main(String[] args) throws NamingException {
+	public static void main(String[] args) throws NamingException, InterruptedException {
 
-		for (int i = 0; i < 300; i++) {
-			StudentsThreads myThread = new StudentsThreads("user"+i);
+		for (int index = 0; index < 1; index++) {
+			StudentsThreads myThread = new StudentsThreads("user"+index);
+			//Thread.sleep(500);
 			myThread.start();
 		}
 		
