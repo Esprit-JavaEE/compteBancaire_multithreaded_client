@@ -6,6 +6,16 @@ import javax.naming.NamingException;
 
 import javaee.ejb.CompteBancaireRemote;
 
+
+/**
+ * 
+ * @author Walid-YAICH
+ * 
+ * La methode run sera exécutée par chaque thread pour faire versement et/ou retrait 
+ * du compte client maintenu dans la partie serveur (EJB remote)
+ * 
+ *
+ */
 public class StudentsThreads extends Thread {
 	
 	private String studentName;
