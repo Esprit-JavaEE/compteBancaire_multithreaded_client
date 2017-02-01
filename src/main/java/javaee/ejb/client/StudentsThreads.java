@@ -11,7 +11,7 @@ import javaee.ejb.CompteBancaireRemote;
  * 
  * @author Walid-YAICH
  * 
- * La methode run sera exÈcutÈe par chaque thread pour faire versement et/ou retrait 
+ * La methode run sera ex√©cut√© par chaque thread pour faire versement et/ou retrait 
  * du compte client maintenu dans la partie serveur (EJB remote)
  * 
  *
@@ -28,20 +28,22 @@ public class StudentsThreads extends Thread {
 	public void run() {
 		
 		try {
-//			//Deux executions signifie 2 clients differents !
-//			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
-//			Context context = new InitialContext();
-//			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
-//			System.out.println("appel 1 : " + proxy.versement(studentName, 20)); //Le client demande un versement
-//			System.out.println("appel 2 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
-//			System.out.println("appel 3 : " +proxy.versement(studentName, 10));  //Le client demande un versement
-//			System.out.println("appel 4 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
-//			//Solde finale = 10
-			
-			//Le serveur devra maintenir le solde d'une personne meme aprÈs la fin de l'exÈcution de ce programme
+			//Deux executions signifie 2 clients differents !
 			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
 			Context context = new InitialContext();
 			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
+			System.out.println("appel 1 : " + proxy.versement(studentName, 20)); //Le client demande un versement
+			System.out.println("appel 2 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
+			System.out.println("appel 3 : " +proxy.versement(studentName, 10));  //Le client demande un versement
+			System.out.println("appel 4 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
+			//Normalement, Solde finale = 10 ... a analyser
+
+// D√©commenter (ctr + shift + c) cette partie pour voir le comportement apr√©s l'ajout de la classe Comptes (@Singleton)
+//Le serveur devra maintenir le solde d'une personne meme apr√©s la fin de l'ex√©cution de ce programme
+
+//			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
+//			Context context = new InitialContext();
+//			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
 			System.out.println("appel 1 : " + proxy.versementPermanent(studentName, 20)); //Le client demande un versement
 			System.out.println("appel 2 : " +proxy.retraitPermanent(studentName, 10));    //Le client demande un retrait
 			System.out.println("appel 3 : " +proxy.versementPermanent(studentName, 10));  //Le client demande un versement
