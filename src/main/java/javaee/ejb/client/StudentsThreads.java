@@ -29,7 +29,7 @@ public class StudentsThreads extends Thread {
 		
 		try {
 			//Deux executions signifie 2 clients differents !
-			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
+			String jndiName="compteBancaire_serveur/CompteBancaire!javaee.ejb.CompteBancaireRemote";
 			Context context = new InitialContext();
 			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
 			System.out.println("appel 1 : " + proxy.versement(studentName, 20)); //Le client demande un versement
@@ -38,16 +38,14 @@ public class StudentsThreads extends Thread {
 			System.out.println("appel 4 : " +proxy.retrait(studentName, 10));    //Le client demande un retrait
 			//Normalement, Solde finale = 10 ... a analyser
 
-// Décommenter (ctr + shift + c) cette partie pour voir le comportement aprés l'ajout de la classe Comptes (@Singleton)
+// Décommenter (ctr + shift + c) la partie ci-dessous pour voir le comportement aprés l'ajout de la classe Comptes (@Singleton)
 //Le serveur devra maintenir le solde d'une personne meme aprés la fin de l'exécution de ce programme
 
-//			String jndiName="ejb_stateless_stateful/CompteBancaire!javaee.ejb.CompteBancaireRemote";
-//			Context context = new InitialContext();
-//			CompteBancaireRemote proxy=(CompteBancaireRemote) context.lookup(jndiName);
-			System.out.println("appel 1 : " + proxy.versementPermanent(studentName, 20)); //Le client demande un versement
-			System.out.println("appel 2 : " +proxy.retraitPermanent(studentName, 10));    //Le client demande un retrait
-			System.out.println("appel 3 : " +proxy.versementPermanent(studentName, 10));  //Le client demande un versement
-			System.out.println("appel 4 : " +proxy.retraitPermanent(studentName, 10));    //Le client demande un retrait
+
+//			System.out.println("appel 1 : " + proxy.versementPermanent(studentName, 20)); //Le client demande un versement
+//			System.out.println("appel 2 : " +proxy.retraitPermanent(studentName, 10));    //Le client demande un retrait
+//			System.out.println("appel 3 : " +proxy.versementPermanent(studentName, 10));  //Le client demande un versement
+//			System.out.println("appel 4 : " +proxy.retraitPermanent(studentName, 10));    //Le client demande un retrait
 			//Solde finale = 10
 			
 			 
